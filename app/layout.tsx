@@ -61,7 +61,7 @@ export const viewport = {
 }
 
 export default function Layout({ children }: { children: React.ReactNode }) {
-  console.log(fontsClassName,'fc/')
+  console.log(fontsClassName, 'fc/')
   return (
     <html
       lang="en"

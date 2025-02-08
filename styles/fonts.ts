@@ -1,4 +1,4 @@
-import localFont from 'next/font/local';
+import localFont from 'next/font/local'
 
 const yipes = localFont({
   src: [
@@ -11,7 +11,7 @@ const yipes = localFont({
   display: 'swap',
   variable: '--font-yipes',
   preload: true,
-});
+})
 const mono = localFont({
   src: [
     {
@@ -23,8 +23,8 @@ const mono = localFont({
   display: 'swap',
   variable: '--font-mono',
   preload: true,
-});
+})
 
-const fonts = [yipes, mono]; // Reverse the order to give mono higher precedence
-const fontsClassName = fonts.map((font) => font.variable).join(' ');
-export { fontsClassName };
+const fonts = [yipes, mono] // Reverse the order to give mono higher precedence
+const fontsClassName = fonts.map((font) => font.variable).join(' ')
+export { fontsClassName }

@@ -1,4 +1,4 @@
-import type { Config } from '../config';
+import type { Config } from '../config'
 
 export function generateTailwind({
   breakpoints,
@@ -31,7 +31,7 @@ export function generateTailwind({
   ${Object.entries(fonts)
     .map(([name, variableName]) => `--font-${name}: var(${variableName});`)
     .join('\n\t')}
-}`;
+}`
 
   // Utilities
   const utilities = `
@@ -42,10 +42,10 @@ ${Object.entries(typography)
   ${Object.entries(value)
     .map(([key, value]) => {
       if (key === 'font-size') {
-        return `@apply stext-${value};`;
+        return `@apply stext-${value};`
       }
 
-      return `${key}: ${value};`;
+      return `${key}: ${value};`
     })
     .join('\n\t')}
 }`
@@ -74,7 +74,7 @@ ${Object.entries(typography)
 
 @utility layout-grid-inner {
 	@apply layout-block-inner design-grid;
-}`;
+}`
 
   // Variants
   const variants = `
@@ -84,7 +84,7 @@ ${Object.keys(themes)
     (name) =>
       `@custom-variant ${name} (&:where([data-theme=${name}], [data-theme=${name} *]));`
   )
-  .join('\n')}`;
+  .join('\n')}`
 
-  return [theme, utilities, variants].join('\n');
+  return [theme, utilities, variants].join('\n')
 }

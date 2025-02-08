@@ -1,0 +1,58 @@
+/* GLOBAL CSS FILE - Contains global styles that shouldn't be reset */
+
+html {
+  --scrollbar-gutter: 0px;
+
+  &.lenis-stopped {
+    --scrollbar-gutter: var(--scrollbar-width);
+  }
+}
+
+* {
+  scrollbar-width: thin;
+}
+
+body {
+  min-height: 100vh;
+  overscroll-behavior: none;
+  background-color: var(--theme-primary);
+  color: var(--theme-secondary);
+  display: flex;
+  flex-direction: column;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Selection styling */
+*::selection {
+  background-color: var(--theme-contrast);
+  color: var(--theme-primary);
+}
+
+/* SVG icon colors */
+svg.icon {
+  path[fill],
+  rect[fill],
+  circle[fill] {
+    fill: currentColor;
+  }
+  path[stroke],
+  rect[stroke],
+  circle[stroke] {
+    stroke: currentColor;
+  }
+}
+
+/* Hover states */
+.link {
+  @media (--hover) {
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+/* Focus states */
+*:focus-visible {
+  outline: 2px solid var(--theme-contrast);
+}

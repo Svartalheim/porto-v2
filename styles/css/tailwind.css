@@ -21,15 +21,10 @@
 	--spacing-gap: var(--gap);
 
   --font-*: initial;
-
+  --font-mono: var(--font-mono);
+	--font-yipes: var(--font-yipes);
 }
 
-  @utility font-mono {
-    font-family: var(--font-mono);
-  }
-  @utility font-yipes {
-    font-family: var(--font-yipes);
-  }
 /** Custom static utilities **/
 @utility test-mono {
   font-family: --font-mono;
@@ -40,7 +35,7 @@
 	@apply stext-20;
 }
 @utility h1-alt {
-  font-family: --font-yipes;
+  font-family: var(--font-yipes);
 	font-style: normal;
 	font-weight: 500;
 	line-height: 90%;

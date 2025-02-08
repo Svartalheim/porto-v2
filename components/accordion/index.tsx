@@ -104,7 +104,8 @@ function Body({
 }: { children?: ReactNode; className?: string }) {
   const { isOpen } = useAccordionContext()
 
-  const [setRectRef, { contentRect: rect }] = useResizeObserver()
+  const [setRectRef, resizeObserverEntry] = useResizeObserver()
+  const rect = resizeObserverEntry?.contentRect
 
   return (
     <div

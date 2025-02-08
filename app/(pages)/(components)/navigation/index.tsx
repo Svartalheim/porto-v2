@@ -7,9 +7,9 @@ import { Link } from '~/components/link'
 const LINKS = [
   { href: '/', label: 'home' },
   { href: '/r3f', label: 'r3f' },
-  { href: '/storyblok', label: 'storyblok' },
-  { href: '/shopify', label: 'shopify' },
-  { href: '/hubspot', label: 'hubspot' },
+  // { href: '/storyblok', label: 'storyblok' },
+  // { href: '/shopify', label: 'shopify' },
+  // { href: '/hubspot', label: 'hubspot' },
 ]
 
 export function Navigation() {
@@ -18,7 +18,7 @@ export function Navigation() {
   return (
     <nav className="fixed top-page left-page z-2 flex flex-col uppercase font-mono">
       <div className="inline-flex">
-        <h1>Satūs</h1>
+        <h1>Svartalheim</h1>
         <span>{pathname}</span>
       </div>
 

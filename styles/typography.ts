@@ -1,6 +1,7 @@
 const fonts = {
   mono: '--font-mono',
-} as const
+  yipes: '--font-yipes',
+} as const;
 
 const typography = {
   'test-mono': {
@@ -11,6 +12,14 @@ const typography = {
     'letter-spacing': 0,
     'font-size': 20,
   },
-} as const
+  'h1-alt': {
+    'font-family': fonts.yipes,
+    'font-style': 'normal',
+    'font-weight': 500,
+    'line-height': '90%',
+    'letter-spacing': 0,
+    'font-size': 48,
+  },
+} as const;
 
-export { fonts, typography }
+export { fonts, typography };

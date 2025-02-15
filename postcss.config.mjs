@@ -31,6 +31,7 @@ const globalDataConfig = {
 const postcssConfig = {
   // NOTE: Order is important
   plugins: {
+    tailwindcss: {},
     '@tailwindcss/postcss': {},
     '@csstools/postcss-global-data': globalDataConfig,
     'postcss-extend-rule': {},

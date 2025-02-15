@@ -61,7 +61,7 @@ export const viewport = {
 }
 
 export default function Layout({ children }: { children: React.ReactNode }) {
-  console.log(fontsClassName, 'fc/')
+  // console.log(themes, 'fc/')
   return (
     <html
       lang="en"
@@ -75,6 +75,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       {GTM_ID && <GoogleTagManager gtmId={GTM_ID} />}
       <body>
         <RealViewport />
+        {/* <CursorFollower /> */}
         {children}
         <Debug />
         <GSAP />

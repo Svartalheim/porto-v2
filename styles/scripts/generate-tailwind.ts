@@ -1,5 +1,7 @@
 import type { Config } from '../config'
 
+
+
 export function generateTailwind({
   breakpoints,
   colors,
@@ -22,6 +24,9 @@ export function generateTailwind({
   ${Object.entries(colors)
     .map(([key, value]) => `--color-${key}: ${value};`)
     .join('\n\t')}
+
+
+   
     
   --spacing: 0.25rem;
 	--spacing-page: var(--space);
@@ -31,6 +36,7 @@ export function generateTailwind({
   ${Object.entries(fonts)
     .map(([name, variableName]) => `--font-${name}: var(${variableName});`)
     .join('\n\t')}
+    --font-apple: var(--font-apple);
 }`
 
   // Utilities

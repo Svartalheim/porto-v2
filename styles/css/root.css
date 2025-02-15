@@ -9,6 +9,8 @@
 @custom-media --reduced-motion (prefers-reduced-motion: reduce);
 
 :root {
+  --font-apple: -apple-system, BlinkMacSystemFont, sans-serif;
+
 	--mobile-width: 375;
 	--mobile-height: 650;
 

@@ -31,7 +31,7 @@ export function Navigation() {
                 'link',
                 'relative',
                 pathname === link.href &&
-                  "before:content-['■'] before:absolute before:left-[-16px]"
+                  "before:content-['■'] before:absolute before:left-[-16px] text-[var(--theme-contrast)]"
               )}
             >
               {link.label}

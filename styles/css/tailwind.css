@@ -15,6 +15,9 @@
   --color-black: #000000;
 	--color-white: #ffffff;
 	--color-red: #e30613;
+
+
+   
     
   --spacing: 0.25rem;
 	--spacing-page: var(--space);
@@ -23,11 +26,12 @@
   --font-*: initial;
   --font-mono: var(--font-mono);
 	--font-yipes: var(--font-yipes);
+    --font-apple: var(--font-apple);
 }
 
 /** Custom static utilities **/
 @utility test-mono {
-  font-family: --font-mono;
+  font-family: var(--font-mono);
 	font-style: normal;
 	font-weight: 400;
 	line-height: 90%;
@@ -40,7 +44,15 @@
 	font-weight: 500;
 	line-height: 90%;
 	letter-spacing: 0;
-	@apply stext-48;
+	@apply stext-80;
+}
+@utility h1 {
+  font-family: var(--font-mono);
+	font-style: normal;
+	font-weight: 500;
+	line-height: 90%;
+	letter-spacing: 0;
+	@apply stext-60;
 }
 
 @utility design-grid {

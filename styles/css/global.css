@@ -1,8 +1,12 @@
 /* GLOBAL CSS FILE - Contains global styles that shouldn't be reset */
+@import "tailwindcss";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 html {
   --scrollbar-gutter: 0px;
-
   &.lenis-stopped {
     --scrollbar-gutter: var(--scrollbar-width);
   }
@@ -50,6 +54,11 @@ svg.icon {
       text-decoration: underline;
     }
   }
+}
+
+.theme-logo,
+.theme-logo path {
+  fill: var(--theme-secondary) !important;
 }
 
 /* Focus states */

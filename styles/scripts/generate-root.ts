@@ -16,6 +16,8 @@ export function generateRoot({
 @custom-media --reduced-motion (prefers-reduced-motion: reduce);
 
 :root {
+  --font-apple: -apple-system, BlinkMacSystemFont, sans-serif;
+
 	${Object.entries(screens)
     .map(
       ([name, { width, height }]) =>
@@ -30,11 +32,15 @@ export function generateRoot({
       }
 
       if (name === 'gap') {
-        return `--mobile-gap: ${fluidCalc(mobile)};\n\t--desktop-gap: ${fluidCalc(desktop)};`
+        return `--mobile-gap: ${fluidCalc(
+          mobile
+        )};\n\t--desktop-gap: ${fluidCalc(desktop)};`
       }
 
       if (name === 'space') {
-        return `--mobile-space: ${fluidCalc(mobile)};\n\t--desktop-space: ${fluidCalc(desktop)};`
+        return `--mobile-space: ${fluidCalc(
+          mobile
+        )};\n\t--desktop-space: ${fluidCalc(desktop)};`
       }
     })
     .join('\n\n\t')}

@@ -1,22 +1,6 @@
 {
   "name": "@darkroom.engineering/satus",
-  "description": "Satūs is a next.js starter",
   "version": "0.0.2",
-  "license": "MIT",
-  "scripts": {
-    "dev": "next dev --turbo",
-    "dev:https": "next dev --turbo --experimental-https",
-    "build": "next build",
-    "start": "next start",
-    "lint": "biome lint",
-    "analyze": "cross-env ANALYZE=true next build",
-    "typecheck": "tsc --noEmit --incremental false",
-    "setup:styles": "bun ./styles/scripts/setup-styles.ts"
-  },
-  "peerDependencies": {
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0"
-  },
   "dependencies": {
     "@hubspot/api-client": "^12.0.1",
     "@next/third-parties": "^15.1.6",
@@ -33,6 +17,7 @@
     "react": "^19.0.0",
     "react-aria": "^3.37.0",
     "react-aria-components": "^1.6.0",
+    "react-do": "^1.1.6",
     "react-dom": "^19.0.0",
     "react-use": "^17.6.0",
     "storyblok-js-client": "^6.10.7",
@@ -43,29 +28,43 @@
     "zustand": "^5.0.3"
   },
   "devDependencies": {
-    "@theatre/core": "^0.7.2",
-    "@theatre/studio": "^0.7.2",
     "@biomejs/biome": "1.9.4",
     "@builder.io/partytown": "^0.10.3",
     "@csstools/postcss-global-data": "^3.0.0",
     "@next/bundle-analyzer": "^15.1.6",
     "@svgr/webpack": "^8.1.0",
-    "@tailwindcss/postcss": "^4.0.4",
+    "@tailwindcss/postcss": "^4.0.6",
+    "@theatre/core": "^0.7.2",
+    "@theatre/studio": "^0.7.2",
     "@total-typescript/ts-reset": "^0.6.1",
     "@types/bun": "^1.2.2",
     "@types/node": "^22.13.1",
     "@types/react": "^19.0.8",
     "@types/three": "^0.173.0",
+    "autoprefixer": "^10.4.20",
     "cross-env": "^7.0.3",
     "cssnano": "^7.0.6",
     "lefthook": "^1.10.10",
+    "postcss": "^8.5.2",
     "postcss-extend-rule": "^4.0.0",
     "postcss-functions": "^4.0.2",
     "postcss-preset-env": "^10.1.3",
-    "tailwindcss": "^4.0.4",
+    "tailwindcss": "^4.0.6",
     "typescript": "^5.7.3"
   },
+  "description": "Satūs is a next.js starter",
+  "license": "MIT",
   "overrides": {
     "scheduler": "0.23.2"
+  },
+  "scripts": {
+    "dev": "next dev --turbo",
+    "dev:https": "next dev --turbo --experimental-https",
+    "build": "next build",
+    "start": "next start",
+    "lint": "biome lint",
+    "analyze": "cross-env ANALYZE=true next build",
+    "typecheck": "tsc --noEmit --incremental false",
+    "setup:styles": "bun ./styles/scripts/setup-styles.ts"
   }
 }

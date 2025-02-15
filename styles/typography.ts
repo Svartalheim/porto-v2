@@ -18,7 +18,15 @@ const typography = {
     'font-weight': 500,
     'line-height': '90%',
     'letter-spacing': 0,
-    'font-size': 48,
+    'font-size': 80,
+  },
+  h1: {
+    'font-family': `var(${fonts.mono})`,
+    'font-style': 'normal',
+    'font-weight': 500,
+    'line-height': '90%',
+    'letter-spacing': 0,
+    'font-size': 60,
   },
 } as const
 

@@ -1,97 +1,97 @@
-import { screens } from '~/styles/config'
+import { screens } from '~/styles/config';
 
 export function desktopVW(value: number, width: number) {
-  return (value * width) / screens.desktop.width
+  return (value * width) / screens.desktop.width;
 }
 
 export function mobileVW(value: number, width: number) {
-  return (value * width) / screens.mobile.width
+  return (value * width) / screens.mobile.width;
 }
 
 export function twoDigits(number: number) {
-  return number > 9 ? `${number}` : `0${number}`
+  return number > 9 ? `${number}` : `0${number}`;
 }
 
 export function checkIsArray<T>(value: T): T extends unknown[] ? T[0] : T {
   return (Array.isArray(value) ? value[0] : value) as T extends unknown[]
     ? T[0]
-    : T
+    : T;
 }
 
 export function convertToCamelCase(inputString: string) {
-  return inputString.charAt(0).toLowerCase() + inputString.slice(1)
+  return inputString.charAt(0).toLowerCase() + inputString.slice(1);
 }
 
 export function capitalizeFirstLetter(inputString: string) {
-  return inputString.charAt(0).toUpperCase() + inputString.slice(1)
+  return inputString.charAt(0).toUpperCase() + inputString.slice(1);
 }
 
 export function numberWithCommas(x: { toString: () => string }) {
-  return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+  return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 }
 
 export function isEmptyObject(obj: Record<string, unknown>) {
-  if (!obj) return true
+  if (!obj) return true;
 
-  return Object.keys(obj).length === 0
+  return Object.keys(obj).length === 0;
 }
 
 export function isEmptyArray(arr: string | unknown[]) {
-  if (!arr) return true
+  if (!arr) return true;
 
-  return Array.isArray(arr) && arr.length === 0
+  return Array.isArray(arr) && arr.length === 0;
 }
 
 export function arraytoObject(array: Record<string, unknown>[]) {
   return array.reduce((acc, currentObj) => {
-    const key = Object.keys(currentObj)[0]
-    acc[key] = currentObj[key]
-    return acc
-  }, {})
+    const key = Object.keys(currentObj)[0];
+    acc[key] = currentObj[key];
+    return acc;
+  }, {});
 }
 
 export function shortenObjectKeys(
   obj: Record<string, unknown>,
   keyword: string
 ) {
-  const regex = new RegExp(`[^]+${keyword}(.*)`)
+  const regex = new RegExp(`[^]+${keyword}(.*)`);
 
   for (const key in obj) {
-    const match = key.match(regex)
+    const match = key.match(regex);
 
     if (match) {
-      const newKey = convertToCamelCase(match[1])
-      obj[newKey] = obj[key]
-      delete obj[key]
+      const newKey = convertToCamelCase(match[1]);
+      obj[newKey] = obj[key];
+      delete obj[key];
     }
   }
 
-  return obj
+  return obj;
 }
 
 export function filterObjectKeys(
   obj: { [x: string]: unknown },
   keyword: string
 ) {
-  const newObj: { [x: string]: unknown } = {}
+  const newObj: { [x: string]: unknown } = {};
 
   for (const key in obj) {
-    const match = key.includes(keyword)
+    const match = key.includes(keyword);
 
     if (match) {
-      newObj[key] = obj[key]
+      newObj[key] = obj[key];
     }
   }
 
-  return newObj
+  return newObj;
 }
 
 export function iterableObject(
   obj: { [s: string]: unknown } | ArrayLike<unknown>
 ) {
   return Object.entries(obj).map(([, value]) => {
-    return value
-  })
+    return value;
+  });
 }
 
 export function slugify(text: { toString: () => string }) {
@@ -102,5 +102,12 @@ export function slugify(text: { toString: () => string }) {
     .trim() // Remove whitespace from both sides of a string (optional)
     .replace(/\s+/g, '-') // Replace spaces with -
     .replace(/[^\w\-]+/g, '') // Remove all non-word chars
-    .replace(/\-\-+/g, '-') // Replace multiple - with single -
+    .replace(/\-\-+/g, '-'); // Replace multiple - with single -
+}
+
+export function hexToRgb(hex: string, alpha = 1) {
+  const r = Number.parseInt(hex.slice(1, 3), 16);
+  const g = Number.parseInt(hex.slice(3, 5), 16);
+  const b = Number.parseInt(hex.slice(5, 7), 16);
+  return `${r}, ${g}, ${b}`;
 }

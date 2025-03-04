@@ -1,0 +1,7 @@
+.designGrid {
+  /* gap: 0px; */
+  @apply text-[var(--theme-secondary)];
+  @media (min-width: 800) {
+    gap: 0.2vw;
+  }
+}

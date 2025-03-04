@@ -1,7 +1,7 @@
 const fonts = {
   mono: '--font-mono',
   yipes: '--font-yipes',
-} as const
+} as const;
 
 const typography = {
   'test-mono': {
@@ -28,6 +28,14 @@ const typography = {
     'letter-spacing': 0,
     'font-size': 60,
   },
-} as const
+  h2: {
+    'font-family': `var(${fonts.mono})`,
+    'font-style': 'normal',
+    'font-weight': 500,
+    'line-height': '90%',
+    'letter-spacing': 0,
+    'font-size': 45,
+  },
+} as const;
 
-export { fonts, typography }
+export { fonts, typography };

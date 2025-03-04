@@ -16,7 +16,13 @@
 	--color-white: #ffffff;
 	--color-red: #e30613;
 
-
+    --rgb-color-*: initial;
+	--rgb-color-primary: 255, 255, 255;
+	--rgb-color-secondary: 0, 0, 0;
+	--rgb-color-contrast: 227, 6, 19;
+  --rgb-color-black: 0, 0, 0;
+	--rgb-color-white: 255, 255, 255;
+	--rgb-color-red: 227, 6, 19;
    
     
   --spacing: 0.25rem;
@@ -53,6 +59,14 @@
 	line-height: 90%;
 	letter-spacing: 0;
 	@apply stext-60;
+}
+@utility h2 {
+  font-family: var(--font-mono);
+	font-style: normal;
+	font-weight: 500;
+	line-height: 90%;
+	letter-spacing: 0;
+	@apply stext-45;
 }
 
 @utility design-grid {

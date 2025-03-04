@@ -1,0 +1,25 @@
+.designGrid {
+  gap: 2vw;
+
+  @media (min-width: 800) {
+    gap: 0.2vw;
+  }
+  .arrow {
+    font-size: 7vw;
+    @media (min-width: 800) {
+      font-size: 5vw;
+    }
+  }
+  h1 {
+    font-weight: 700;
+    line-height: 0.8em;
+    letter-spacing: -0.05em;
+    font-size: 11.2vw;
+    height: fit-content;
+    text-transform: uppercase;
+    @apply col-span-full;
+    @media (min-width: 800) {
+      font-size: 5vw;
+    }
+  }
+}

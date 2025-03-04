@@ -1,3 +1,5 @@
+import { hexToRgb } from '~/libs/utils'
+
 type StyleVariablesProps = {
   colors?: Record<string, string>
   themes?: Record<string, Record<string, string>>
@@ -17,7 +19,10 @@ export function StyleVariables({
           .map(
             ([key, colors]) =>
               `[data-theme='${key}'], .theme-${key} {${Object.entries(colors)
-                .map(([key, value]) => `--theme-${key}: ${value};`)
+                .map(
+                  ([key, value]) =>
+                    `--theme-${key}: ${value}; --rgb-theme-${key}: ${hexToRgb(value)};`
+                )
                 .join('')}}`
           )
           .join('')}

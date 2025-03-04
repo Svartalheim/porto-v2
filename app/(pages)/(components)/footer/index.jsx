@@ -1,17 +1,14 @@
-import { Link } from '~/components/link'
-import Logo from '~/components/svartalheim.svg'
-
 export function Footer() {
   return (
-    <footer className="flex flex-col dt:flex-row items-center dt:items-start justify-between p-page uppercase font-mono">
-      <Link href="https://svartalheim.dev/" className="link">
+    <footer className='flex flex-col dt:flex-row items-center dt:items-start justify-between p-page uppercase font-mono'>
+      {/* <Link href="https://svartalheim.dev/" className="link">
         <Logo className="sw-160 theme-logo" />
-      </Link>
+      </Link> */}
       <div>
-        <span className="font-stretch-expanded">
+        <span className='font-stretch-expanded'>
           made with ❤️ by svartalheim
         </span>
       </div>
     </footer>
-  )
+  );
 }

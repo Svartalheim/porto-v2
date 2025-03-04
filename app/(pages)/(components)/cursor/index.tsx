@@ -36,7 +36,7 @@ const CursorFollower = () => {
 
   return (
     <div
-      className="bg-primary"
+      className="bg-[rgba(var(--rgb-theme-contrast),1)]"
       style={{
         position: 'fixed',
         top: 0,

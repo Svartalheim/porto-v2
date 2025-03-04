@@ -1,5 +1,6 @@
 import { GoogleAnalytics, GoogleTagManager } from '@next/third-parties/google'
 import { ReactTempus } from 'tempus/react'
+// import ClickSpark from '~/components/click-spark/click-spark'
 import { Debug } from '~/components/debug'
 import { GSAP } from '~/components/gsap'
 import { RealViewport } from '~/components/real-viewport'
@@ -8,6 +9,7 @@ import { colors, themes } from '~/styles/config'
 import '~/styles/css/index.css'
 import { fontsClassName } from '~/styles/fonts'
 import { StyleVariables } from '~/styles/scripts/style-variables'
+// import CursorFollower from './(pages)/(components)/cursor'
 
 const APP_NAME = AppData.name
 const APP_DEFAULT_TITLE = 'Satūs'
@@ -75,8 +77,10 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       {GTM_ID && <GoogleTagManager gtmId={GTM_ID} />}
       <body>
         <RealViewport />
-        {/* <CursorFollower /> */}
+        {/* <ClickSpark> */}
         {children}
+        {/* </ClickSpark> */}
+        {/* <CursorFollower /> */}
         <Debug />
         <GSAP />
         {/* @ts-expect-error Server Component */}

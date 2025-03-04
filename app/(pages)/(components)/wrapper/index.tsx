@@ -7,6 +7,7 @@ import { type ComponentProps, useEffect } from 'react'
 
 import { Canvas } from '~/libs/webgl/components/canvas'
 import type { Theme } from '~/styles/config'
+import Contact from '../contact'
 import { Footer } from '../footer'
 import { Lenis } from '../lenis'
 import { Navigation } from '../navigation'
@@ -36,6 +37,7 @@ export function Wrapper({
     <>
       {webgl && <Canvas root {...(typeof webgl === 'object' && webgl)} />}
       <Navigation />
+      <Contact />
       <main className={cn('relative flex flex-col grow', className)} {...props}>
         {children}
         <script>

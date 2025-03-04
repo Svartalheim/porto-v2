@@ -1,6 +1,5 @@
+import { hexToRgb } from '~/libs/utils'
 import type { Config } from '../config'
-
-
 
 export function generateTailwind({
   breakpoints,
@@ -25,7 +24,13 @@ export function generateTailwind({
     .map(([key, value]) => `--color-${key}: ${value};`)
     .join('\n\t')}
 
-
+    --rgb-color-*: initial;
+	${Object.entries(Object.entries(themes)[0][1])
+    .map(([key, value]) => `--rgb-color-${key}: ${hexToRgb(value) };`)
+    .join('\n\t')}
+  ${Object.entries(colors)
+    .map(([key, value]) => `--rgb-color-${key}: ${hexToRgb(value) };`)
+    .join('\n\t')}
    
     
   --spacing: 0.25rem;

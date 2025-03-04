@@ -26,10 +26,10 @@ export function generateTailwind({
 
     --rgb-color-*: initial;
 	${Object.entries(Object.entries(themes)[0][1])
-    .map(([key, value]) => `--rgb-color-${key}: ${hexToRgb(value) };`)
+    .map(([key, value]) => `--rgb-color-${key}: ${hexToRgb(value)};`)
     .join('\n\t')}
   ${Object.entries(colors)
-    .map(([key, value]) => `--rgb-color-${key}: ${hexToRgb(value) };`)
+    .map(([key, value]) => `--rgb-color-${key}: ${hexToRgb(value)};`)
     .join('\n\t')}
    
     

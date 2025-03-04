@@ -1,7 +1,7 @@
 const fonts = {
   mono: '--font-mono',
   yipes: '--font-yipes',
-} as const;
+} as const
 
 const typography = {
   'test-mono': {
@@ -36,6 +36,6 @@ const typography = {
     'letter-spacing': 0,
     'font-size': 45,
   },
-} as const;
+} as const
 
-export { fonts, typography };
+export { fonts, typography }

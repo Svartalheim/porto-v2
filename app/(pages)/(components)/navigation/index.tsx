@@ -5,7 +5,7 @@ import { usePathname } from 'next/navigation'
 import { Link } from '~/components/link'
 
 const LINKS = [
-  { href: '/', label: 'home' },
+  { href: '/home', label: 'home' },
   { href: '/r3f', label: 'r3f' },
   // { href: '/storyblok', label: 'storyblok' },
   // { href: '/shopify', label: 'shopify' },
@@ -18,7 +18,15 @@ export function Navigation() {
   return (
     <nav className="fixed top-page left-page z-2 flex flex-col uppercase font-mono">
       <div className="inline-flex">
-        <h1>Svartalheim</h1>
+        <Link
+          href="/"
+          className={cn(
+            'font-bold',
+            pathname === '/' && 'text-[var(--theme-contrast)] '
+          )}
+        >
+          Svartalheim
+        </Link>
         <span>{pathname}</span>
       </div>
 

@@ -28,11 +28,13 @@ export default function Bio() {
           My journey in web development has been fueled by a relentless
           curiosity and a drive for continuous learning.
         </ScrollReveal>
-        <div className="flex gap-5 items-center justify-center transition-transform duration-500">
-          <span className="h1">awikaw</span>
+        <div className="flex sgap-20 smy-40  justify-center dt:justify-start items-center transition-transform duration-500">
+          <p className="stext-16 dt:stext-40 -stracking-2 dt:-stracking-4">
+            LET'S CREATE SOMETHING
+          </p>
           <RotatingTextWrapper
-            texts={['Svartalheim', 'Superb', 'Amazing!', 'Cool!']}
-            className="overflow-hidden srounded-10 sp-12 px-4 flex items-center justify-center bg-[rgba(var(--rgb-theme-contrast),1)]"
+            texts={['Sigma', 'Stunning', 'Goated', 'Outstanding']}
+            className="overflow-hidden stext-10 dt:stext-40 srounded-10 py-2 px-4 flex items-center justify-center bg-[rgba(var(--rgb-theme-contrast),1)]"
             mainClassName="p-4"
             staggerFrom={'last'}
             initial={{ y: '100%' }}

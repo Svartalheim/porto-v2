@@ -28,7 +28,7 @@ const RotatingTextWrapper = forwardRef<RotatingTextRef, RotatingTextProps>(
         {/* Hidden div to measure text width dynamically */}
         <div
           ref={textRef}
-          className="absolute top-0 left-0 p-2 opacity-0 whitespace-nowrap pointer-events-none"
+          className="absolute top-0 stext-10 dt:stext-40 left-0 p-2 opacity-0 whitespace-nowrap pointer-events-none"
         >
           {texts[currentIndex]} {/* Get the currently displayed text */}
         </div>

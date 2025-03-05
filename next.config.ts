@@ -75,9 +75,6 @@ const nextConfig: NextConfig = {
   //     transform: 'gsap/{{member}}',
   //   },
   // },
-  devIndicators: {
-    appIsrStatus: false,
-  },
   typescript: {
     ignoreBuildErrors: true,
   },
@@ -175,19 +172,19 @@ const nextConfig: NextConfig = {
       ],
     },
   ],
-  redirects: async () => [
-    {
-      source: '/home',
-      destination: '/',
-      permanent: true,
-    },
-  ],
-  rewrites: async () => [
-    {
-      source: '/',
-      destination: '/home',
-    },
-  ],
+  // redirects: async () => [
+  //   {
+  //     source: '/home',
+  //     destination: '/',
+  //     permanent: true,
+  //   },
+  // ],
+  // rewrites: async () => [
+  //   {
+  //     source: '/',
+  //     destination: '/home',
+  //   },
+  // ],
 }
 
 const bundleAnalyzerPlugin = bundleAnalyzer({

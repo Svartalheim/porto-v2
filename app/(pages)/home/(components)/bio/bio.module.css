@@ -4,6 +4,9 @@
   @media (min-width: 800) {
     gap: 0.2vw;
   }
+  p {
+    font-weight: 700;
+  }
   h1 {
     font-weight: 700;
     line-height: 0.8em;

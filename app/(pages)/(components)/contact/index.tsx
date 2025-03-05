@@ -27,7 +27,7 @@ export default function Contact() {
         </SheetTrigger>
         <SheetContent className="font-mono">
           <SheetHeader>
-            <SheetTitle>Role Details</SheetTitle>
+            {/* <SheetTitle>Role Details</SheetTitle> */}
           </SheetHeader>
         </SheetContent>
       </Sheet>

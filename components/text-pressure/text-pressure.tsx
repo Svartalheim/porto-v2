@@ -109,12 +109,14 @@ const TextPressure: React.FC<TextPressureProps> = ({
     })
   }
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
   useEffect(() => {
     setSize()
     window.addEventListener('resize', setSize)
     return () => window.removeEventListener('resize', setSize)
   }, [scale, text])
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
   useEffect(() => {
     let rafId: number
     const animate = () => {

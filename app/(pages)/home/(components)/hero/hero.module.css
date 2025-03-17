@@ -17,9 +17,9 @@
     font-size: 11.2vw;
     height: fit-content;
     text-transform: uppercase;
-    @apply col-span-full;
     @media (min-width: 800) {
-      font-size: 5vw;
+      font-size: 5vw !important;
     }
+    /* @apply col-span-full; */
   }
 }

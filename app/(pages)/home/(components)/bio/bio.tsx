@@ -18,17 +18,18 @@ export default function Bio() {
           enableBlur={true}
           baseRotation={0}
           blurStrength={10}
-          textClassName="h2 stext-32 dt:stext-20 sleading-20 dt:sleading-48 uppercase"
+          textClassName="h2 stext-32 dt:stext-20 sleading-16 dt:sleading-48 uppercase"
         >
           I'm a self-taught frontend engineer with 2+ years of experience
           building responsive and accessible web applications plus a backend
-          junior. I specialize in React and have a keen eye for design. When I'm
-          not coding, I enjoy researching and exploring new technologies. Over
-          the past two years, I've ventured into the world of web development.
-          My journey in web development has been fueled by a relentless
-          curiosity and a drive for continuous learning.
+          junior. I specialize in React and have a keen eye for designing
+          pixel-perfect website. When I'm not coding, I enjoy researching and
+          exploring new technologies. Over the past two years, I've ventured
+          into the world of web development. My journey in web development has
+          been fueled by a relentless curiosity and a drive for continuous
+          learning.
         </ScrollReveal>
-        <div className="flex sgap-20 smy-40  justify-center dt:justify-start items-center transition-transform duration-500">
+        <div className="flex sgap-10 smy-40  justify-center dt:justify-start items-center transition-transform duration-500">
           <p className="stext-16 dt:stext-40 -stracking-2 dt:-stracking-4">
             LET'S CREATE SOMETHING
           </p>

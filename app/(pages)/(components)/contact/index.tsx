@@ -1,6 +1,7 @@
 'use client'
 import { Button } from '~/components/button'
 import ShinyText from '~/components/gradient-text/shiny-text'
+import { Separator } from '~/components/ui/separator'
 import {
   Sheet,
   SheetContent,
@@ -27,8 +28,10 @@ export default function Contact() {
         </SheetTrigger>
         <SheetContent className="font-mono">
           <SheetHeader>
-            {/* <SheetTitle>Role Details</SheetTitle> */}
+            <SheetTitle>Contact</SheetTitle>
+            <Separator orientation="horizontal" />
           </SheetHeader>
+          <div>Email:</div>
         </SheetContent>
       </Sheet>
     </>

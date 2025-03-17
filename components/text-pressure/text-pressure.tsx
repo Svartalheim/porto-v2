@@ -1,6 +1,6 @@
 'use client'
 import { useEffect, useRef, useState } from 'react'
-
+import styles from './text-pressure.module.css'
 interface TextPressureProps {
   text?: string
   fontFamily?: string
@@ -167,14 +167,10 @@ const TextPressure: React.FC<TextPressureProps> = ({
   return (
     <div
       ref={containerRef}
-      className="relative w-full h-full overflow-hidden bg-transparent"
+      className="relative w-full h-full z-10 overflow-hidden bg-transparent"
     >
       <style>{`
-        @font-face {
-          font-family: '${fontFamily}';
-          src: url('${fontUrl}');
-          font-style: normal;
-        }
+
         .stroke span {
           position: relative;
           color: ${textColor};
@@ -193,7 +189,7 @@ const TextPressure: React.FC<TextPressureProps> = ({
 
       <h1
         ref={titleRef}
-        className={`text-pressure-title ${className} ${
+        className={`text-pressure-title ${styles.textPressureContainer} ${className} ${
           flex ? 'flex justify-between' : ''
         } ${stroke ? 'stroke' : ''} uppercase text-center`}
         style={{

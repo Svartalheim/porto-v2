@@ -7,6 +7,7 @@ import { Link } from '~/components/link'
 const LINKS = [
   { href: '/home', label: 'home' },
   { href: '/r3f', label: 'r3f' },
+  { href: '/project', label: 'project' },
   // { href: '/storyblok', label: 'storyblok' },
   // { href: '/shopify', label: 'shopify' },
   // { href: '/hubspot', label: 'hubspot' },
@@ -25,7 +26,7 @@ export function Navigation() {
             pathname === '/' && 'text-[var(--theme-contrast)] '
           )}
         >
-          Svartalheim
+          SVARTALHEIM
         </Link>
         <span>{pathname}</span>
       </div>

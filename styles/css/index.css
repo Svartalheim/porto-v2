@@ -1,6 +1,79 @@
 /* INDEX CSS FILE - Barrel file for importing all the css files */
-@import "tailwindcss/utilities.css";
-@import "./reset.css";
-@import "./tailwind.css";
-@import "./root.css";
-@import "./global.css";
+@import 'tailwindcss/utilities.css';
+@import './reset.css';
+@import './tailwind.css';
+@import './root.css';
+@import './global.css';
+/* Add this to your global CSS file */
+/* Add this to your global CSS file */
+
+/* Base setup for view transitions */
+html {
+  overflow-x: hidden; /* Prevent horizontal scrolling during transitions */
+}
+
+/* Only apply transitions when the class is present */
+.view-transition-enabled {
+  view-transition-name: none;
+}
+
+.view-transition-enabled .page-container {
+  view-transition-name: page;
+  position: relative; /* Ensure proper stacking context */
+  width: 100%;
+  min-height: 100vh;
+}
+
+/* Add this class during animation to prevent unwanted scrolling */
+.animating {
+  overflow: hidden;
+}
+
+/* Control the animations */
+::view-transition-old(page) {
+  animation: slide-out-down 2s ease forwards;
+}
+
+::view-transition-new(page) {
+  animation: slide-in-bottom 2s ease forwards;
+}
+
+@keyframes slide-in-bottom {
+  from {
+    transform: translateY(100%);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(0%);
+    opacity: 1;
+  }
+}
+
+@keyframes slide-out-down {
+  from {
+    transform: scale(1);
+    opacity: 1;
+  }
+  to {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+}
+
+/* Ensure the root transition groups work properly */
+html::view-transition-group(root),
+body::view-transition-group(root) {
+  animation: none;
+  mix-blend-mode: normal;
+  display: block;
+}
+
+/* Ensure content inside the transition is visible */
+::view-transition-image-pair(page) {
+  isolation: auto;
+}
+
+::view-transition-old(page),
+::view-transition-new(page) {
+  mix-blend-mode: normal;
+}

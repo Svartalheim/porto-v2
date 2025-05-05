@@ -4,8 +4,7 @@ import type { NextConfig } from 'next'
 const nextConfig: NextConfig = {
   reactStrictMode: true,
   poweredByHeader: false,
-  experimental: {
-    turbo: {
+    turbopack: {
       rules: {
         '*.svg': {
           loaders: [
@@ -57,15 +56,6 @@ const nextConfig: NextConfig = {
           as: '*.js',
         },
       },
-    },
-    reactCompiler: true,
-    nextScriptWorkers: true,
-    optimizePackageImports: [
-      '@react-three/drei',
-      '@react-three/fiber',
-      'gsap',
-      'react-aria-components',
-    ],
   },
   // modularizeImports: {
   //   '@react-three/drei': {
@@ -77,6 +67,9 @@ const nextConfig: NextConfig = {
   // },
   typescript: {
     ignoreBuildErrors: true,
+  },
+  experimental: {
+    viewTransition: true,
   },
   images: {
     dangerouslyAllowSVG: true,

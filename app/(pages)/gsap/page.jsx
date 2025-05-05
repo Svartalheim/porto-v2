@@ -1,35 +1,35 @@
-'use client';
+'use client'
 
-import { useGSAP } from '@gsap/react';
+import { useGSAP } from '@gsap/react'
 // import { IconChevronDown } from '@tabler/icons-react';
-import gsap from 'gsap';
-import { ScrollSmoother } from 'gsap/ScrollSmoother';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { ChevronDown } from 'lucide-react';
-import { useEffect, useRef } from 'react';
-import Threads from '~/backgrounds/threads/bg-threads';
-import TextPressure from '~/components/text-pressure/text-pressure';
-import HelperBar from './(components)/helper-bar';
-import VideoScrollReveal from './(components)/scroll-trigger';
+import gsap from 'gsap'
+import { ScrollSmoother } from 'gsap/ScrollSmoother'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { ChevronDown } from 'lucide-react'
+import { useEffect, useRef } from 'react'
+import Threads from '~/backgrounds/threads/bg-threads'
+import TextPressure from '~/components/text-pressure/text-pressure'
+import HelperBar from './(components)/helper-bar'
+import VideoScrollReveal from './(components)/scroll-trigger'
 
-gsap.registerPlugin(ScrollSmoother, ScrollTrigger);
+gsap.registerPlugin(ScrollSmoother, ScrollTrigger)
 
 export default function GsapButton() {
-  const wrapperRef = useRef();
-  const contentRef = useRef();
-  const buttonRef = useRef();
-  const titleRef = useRef();
+  const wrapperRef = useRef()
+  const contentRef = useRef()
+  const buttonRef = useRef()
+  const titleRef = useRef()
 
   useGSAP(() => {
-    const title = titleRef.current;
-    const viewportHeight = window.innerHeight;
+    const title = titleRef.current
+    const viewportHeight = window.innerHeight
 
     ScrollSmoother.create({
       wrapper: wrapperRef.current,
       content: contentRef.current,
       smooth: 1.25,
       effects: true,
-    });
+    })
 
     gsap.fromTo(
       title,
@@ -45,18 +45,18 @@ export default function GsapButton() {
           pinSpacing: false,
         },
       }
-    );
-  }, []);
+    )
+  }, [])
 
   useEffect(() => {
-    document.documentElement.setAttribute('data-theme', 'light');
-  }, []);
+    document.documentElement.setAttribute('data-theme', 'light')
+  }, [])
 
   return (
-    <div ref={wrapperRef} className='overflow-hidden'>
+    <div ref={wrapperRef} className="overflow-hidden">
       <div ref={contentRef}>
-        <div className='good  '>
-          <div ref={titleRef} className='w-screen relative h-screen bg-black'>
+        <div className="good  ">
+          <div ref={titleRef} className="w-screen relative h-screen bg-black">
             <Threads
               amplitude={0.7}
               distance={0.2}
@@ -81,23 +81,23 @@ export default function GsapButton() {
             )} */}
             <HelperBar />
             <ChevronDown
-              className='absolute z-[60] top-[85vh] left-1/2 -translate-x-1/2  animate-bounce text-white'
+              className="absolute z-[60] top-[85vh] left-1/2 -translate-x-1/2  animate-bounce text-white"
               size={48}
             />
-            <div className='absolute h-screen w-[80vw] left-1/2 -translate-x-1/2 top-0'>
+            <div className="absolute h-screen w-[80vw] left-1/2 -translate-x-1/2 top-0">
               <TextPressure
-                text='SVARTALHEIM.dev'
+                text="SVARTALHEIM.dev"
                 flex={true}
                 alpha={false}
                 stroke={false}
                 width={true}
                 weight={true}
                 italic={true}
-                className='absolute top-0 w-full h-full flex items-center'
+                className="absolute top-0 w-full h-full flex items-center"
                 // className='z-50 flex grow items-center h-full flex-1 min-w-screen !text-black justify-center'
-                fontUrl='/fonts/ServerMono/ServerMono-Regular.woff2'
-                textColor='#ffffff'
-                strokeColor='#ff0000'
+                fontUrl="/fonts/ServerMono/ServerMono-Regular.woff2"
+                textColor="#ffffff"
+                strokeColor="#ff0000"
                 minFontSize={60}
               />
             </div>
@@ -106,5 +106,5 @@ export default function GsapButton() {
         <VideoScrollReveal />
       </div>
     </div>
-  );
+  )
 }

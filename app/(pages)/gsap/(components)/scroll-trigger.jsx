@@ -1,22 +1,22 @@
-'use client';
-import { useGSAP } from '@gsap/react';
-import gsap from 'gsap';
-import { ScrollSmoother } from 'gsap/ScrollSmoother';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { useRef } from 'react';
-import { BottomBar } from '~/components/bottom-bar/bottom-bar';
-gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
+'use client'
+import { useGSAP } from '@gsap/react'
+import gsap from 'gsap'
+import { ScrollSmoother } from 'gsap/ScrollSmoother'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { useRef } from 'react'
+import { BottomBar } from '~/components/bottom-bar/bottom-bar'
+gsap.registerPlugin(ScrollTrigger, ScrollSmoother)
 
 export default function VideoScrollReveal() {
-  const containerRef = useRef();
-  const videoRef = useRef();
-  const overlayRef = useRef();
+  const containerRef = useRef()
+  const videoRef = useRef()
+  const overlayRef = useRef()
 
   useGSAP(() => {
-    const trigger = containerRef.current;
-    const video = videoRef.current;
-    const overlay = overlayRef.current;
-    const viewportHeight = window.innerHeight;
+    const trigger = containerRef.current
+    const video = videoRef.current
+    const overlay = overlayRef.current
+    const viewportHeight = window.innerHeight
 
     // Animate video upward
     gsap.fromTo(
@@ -33,7 +33,7 @@ export default function VideoScrollReveal() {
           pinSpacing: false,
         },
       }
-    );
+    )
 
     // Animate dark overlay
     gsap.fromTo(
@@ -49,27 +49,27 @@ export default function VideoScrollReveal() {
           scrub: true,
         },
       }
-    );
-  }, []);
+    )
+  }, [])
 
   return (
-    <div id='smooth-wrapper'>
-      <div id='smooth-content'>
-        <section ref={containerRef} className='video-container'>
+    <div id="smooth-wrapper">
+      <div id="smooth-content">
+        <section ref={containerRef} className="video-container">
           <video
             ref={videoRef}
-            className='bg-video'
-            src='/video/frieren.mp4'
+            className="bg-video"
+            src="/video/frieren.mp4"
             autoPlay
             muted
             loop
             playsInline
           />
-          <div className='video-overlay' ref={overlayRef} />
+          <div className="video-overlay" ref={overlayRef} />
         </section>
 
-        <section className='content-section'>
-          <div className='inner-content'>
+        <section className="content-section">
+          <div className="inner-content">
             <h1>Scroll Into View 🤟🤟🤟</h1>
             <p>This content scrolls over the pinned video background.</p>
           </div>
@@ -127,5 +127,5 @@ export default function VideoScrollReveal() {
         }
       `}</style>
     </div>
-  );
+  )
 }

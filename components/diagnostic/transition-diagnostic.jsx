@@ -1,29 +1,29 @@
-'use client';
+'use client'
 
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react'
 
 export function TransitionDiagnostic() {
   // Only show in development environment
   if (process.env.NODE_ENV !== 'development') {
-    return null;
+    return null
   }
 
-  const [isExpanded, setIsExpanded] = useState(false);
-  const [logs, setLogs] = useState([]);
-  const [transitionSupported, setTransitionSupported] = useState(false);
-  const [transitionCount, setTransitionCount] = useState(0);
-  const [lastTransitionDuration, setLastTransitionDuration] = useState(0);
-  const transitionStartTime = useRef(0);
+  const [isExpanded, setIsExpanded] = useState(false)
+  const [logs, setLogs] = useState([])
+  const [transitionSupported, setTransitionSupported] = useState(false)
+  const [transitionCount, setTransitionCount] = useState(0)
+  const [lastTransitionDuration, setLastTransitionDuration] = useState(0)
+  const transitionStartTime = useRef(0)
 
   useEffect(() => {
     // Check for View Transitions API support
-    setTransitionSupported('startViewTransition' in document);
+    setTransitionSupported('startViewTransition' in document)
 
     // Setup console log interceptor
-    const originalConsoleLog = console.log;
+    const originalConsoleLog = console.log
 
     console.log = (...args) => {
-      originalConsoleLog(...args);
+      originalConsoleLog(...args)
 
       // Only capture transition-related logs
       if (
@@ -37,31 +37,31 @@ export function TransitionDiagnostic() {
             message: args.join(' '),
           },
           ...prev.slice(0, 19), // Keep last 20 logs
-        ]);
+        ])
 
         // Track transition events
         if (args[0].includes('starting')) {
-          transitionStartTime.current = performance.now();
-          setTransitionCount((count) => count + 1);
+          transitionStartTime.current = performance.now()
+          setTransitionCount((count) => count + 1)
         }
 
         if (args[0].includes('animation complete')) {
-          const duration = performance.now() - transitionStartTime.current;
-          setLastTransitionDuration(Math.round(duration));
+          const duration = performance.now() - transitionStartTime.current
+          setLastTransitionDuration(Math.round(duration))
         }
       }
-    };
+    }
 
     // Restore original on unmount
     return () => {
-      console.log = originalConsoleLog;
-    };
-  }, []);
+      console.log = originalConsoleLog
+    }
+  }, [])
 
   return (
-    <div className='fixed bottom-4 left-4 z-50 font-mono text-xs'>
+    <div className="fixed bottom-4 left-4 z-50 font-mono text-xs">
       <div
-        className='bg-gray-800 text-white p-2 rounded-lg shadow-lg flex items-center space-x-2 cursor-pointer'
+        className="bg-gray-800 text-white p-2 rounded-lg shadow-lg flex items-center space-x-2 cursor-pointer"
         onClick={() => setIsExpanded(!isExpanded)}
       >
         <div
@@ -79,32 +79,32 @@ export function TransitionDiagnostic() {
       </div>
 
       {isExpanded && (
-        <div className='mt-2 bg-gray-800 text-white p-3 rounded-lg shadow-lg max-h-48 overflow-y-auto w-80'>
-          <div className='flex justify-between mb-2'>
+        <div className="mt-2 bg-gray-800 text-white p-3 rounded-lg shadow-lg max-h-48 overflow-y-auto w-80">
+          <div className="flex justify-between mb-2">
             <span>Transition Events</span>
             <button
-              type='button'
-              className='text-xs text-gray-400 hover:text-white'
+              type="button"
+              className="text-xs text-gray-400 hover:text-white"
               onClick={(e) => {
-                e.stopPropagation();
-                setLogs([]);
-                setTransitionCount(0);
-                setLastTransitionDuration(0);
+                e.stopPropagation()
+                setLogs([])
+                setTransitionCount(0)
+                setLastTransitionDuration(0)
               }}
             >
               Clear
             </button>
           </div>
           {logs.length === 0 ? (
-            <div className='text-gray-400 italic'>
+            <div className="text-gray-400 italic">
               No transitions recorded yet
             </div>
           ) : (
-            <div className='space-y-1'>
+            <div className="space-y-1">
               {logs.map((log, idx) => (
                 // biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
-                <div key={idx} className='border-b border-gray-700 pb-1 flex'>
-                  <span className='text-gray-400 mr-2'>{log.timestamp}</span>
+                <div key={idx} className="border-b border-gray-700 pb-1 flex">
+                  <span className="text-gray-400 mr-2">{log.timestamp}</span>
                   <span>{log.message}</span>
                 </div>
               ))}
@@ -113,5 +113,5 @@ export function TransitionDiagnostic() {
         </div>
       )}
     </div>
-  );
+  )
 }

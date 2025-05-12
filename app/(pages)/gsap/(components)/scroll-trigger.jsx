@@ -1,21 +1,21 @@
-'use client';
-import { useGSAP } from '@gsap/react';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { useRef } from 'react';
-import { BottomBar } from '~/components/bottom-bar/bottom-bar';
-gsap.registerPlugin(ScrollTrigger);
+'use client'
+import { useGSAP } from '@gsap/react'
+import gsap from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { useRef } from 'react'
+import { BottomBar } from '~/components/bottom-bar/bottom-bar'
+gsap.registerPlugin(ScrollTrigger)
 
 export default function VideoScrollReveal() {
-  const containerRef = useRef();
-  const videoRef = useRef();
-  const overlayRef = useRef();
+  const containerRef = useRef()
+  const videoRef = useRef()
+  const overlayRef = useRef()
 
   useGSAP(() => {
-    const trigger = containerRef.current;
-    const video = videoRef.current;
-    const overlay = overlayRef.current;
-    const viewportHeight = window.innerHeight;
+    const trigger = containerRef.current
+    const video = videoRef.current
+    const overlay = overlayRef.current
+    const viewportHeight = window.innerHeight
 
     // Animate video upward
     gsap.fromTo(
@@ -32,7 +32,7 @@ export default function VideoScrollReveal() {
           pinSpacing: false,
         },
       }
-    );
+    )
 
     // Animate dark overlay
     gsap.fromTo(
@@ -48,12 +48,12 @@ export default function VideoScrollReveal() {
           scrub: true,
         },
       }
-    );
-  }, []);
+    )
+  }, [])
 
   return (
-    <div id='smooth-wrapper' className='h-screen'>
-      <div id='smooth-content'>
+    <div id="smooth-wrapper" className="h-screen">
+      <div id="smooth-content">
         {/* <section ref={containerRef} className='video-container'>
           <video
             ref={videoRef}
@@ -126,5 +126,5 @@ export default function VideoScrollReveal() {
         }
       `}</style>
     </div>
-  );
+  )
 }

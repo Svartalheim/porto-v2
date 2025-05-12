@@ -4,48 +4,43 @@
 //   return children
 // }
 
+'use client'
 
-'use client';
-
-import { type ReactNode, useEffect, useState } from 'react';
+import { type ReactNode, useEffect, useState } from 'react'
 
 export default function Template({ children }: { children: ReactNode }) {
-  const [isClient, setIsClient] = useState(false);
-  const [hasViewTransition, setHasViewTransition] = useState(false);
+  const [isClient, setIsClient] = useState(false)
+  const [hasViewTransition, setHasViewTransition] = useState(false)
 
   useEffect(() => {
     // Mark as client-side rendered
-    setIsClient(true);
+    setIsClient(true)
 
     // Check for View Transitions API support
-    setHasViewTransition('startViewTransition' in document);
+    setHasViewTransition('startViewTransition' in document)
 
     // Enable view transitions on mount if supported
     if ('startViewTransition' in document) {
-      console.log('View Transitions API is supported');
-      document.documentElement.classList.add('view-transition-enabled');
+      console.log('View Transitions API is supported')
+      document.documentElement.classList.add('view-transition-enabled')
     } else {
-      console.warn('View Transitions API is NOT supported in this browser');
+      console.warn('View Transitions API is NOT supported in this browser')
     }
 
     // Cleanup function
     return () => {
-      document.documentElement.classList.remove('view-transition-enabled');
-      document.documentElement.classList.remove('animating');
-    };
-  }, []);
+      document.documentElement.classList.remove('view-transition-enabled')
+      document.documentElement.classList.remove('animating')
+    }
+  }, [])
 
   // Skip transition styling if not client-side
-  const transitionStyle = isClient && hasViewTransition
-    ? { viewTransitionName: 'page' }
-    : {};
+  const transitionStyle =
+    isClient && hasViewTransition ? { viewTransitionName: 'page' } : {}
 
   return (
     <>
-      <div
-        style={transitionStyle}
-        className="page-container h-full "
-      >
+      <div style={transitionStyle} className="page-container h-full ">
         {children}
       </div>
 
@@ -60,5 +55,5 @@ export default function Template({ children }: { children: ReactNode }) {
         </div>
       )} */}
     </>
-  );
+  )
 }

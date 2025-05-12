@@ -1,24 +1,24 @@
-import { GoogleAnalytics, GoogleTagManager } from '@next/third-parties/google';
-import { ReactTempus } from 'tempus/react';
+import { GoogleAnalytics, GoogleTagManager } from '@next/third-parties/google'
+import { ReactTempus } from 'tempus/react'
 // import ClickSpark from '~/components/click-spark/click-spark'
-import { Debug } from '~/components/debug';
-import { GSAP } from '~/components/gsap';
-import { RealViewport } from '~/components/real-viewport';
-import AppData from '~/package.json';
-import { colors, themes } from '~/styles/config';
-import '~/styles/css/index.css';
-import { fontsClassName } from '~/styles/fonts';
-import { StyleVariables } from '~/styles/scripts/style-variables';
+import { Debug } from '~/components/debug'
+import { GSAP } from '~/components/gsap'
+import { RealViewport } from '~/components/real-viewport'
+import AppData from '~/package.json'
+import { colors, themes } from '~/styles/config'
+import '~/styles/css/index.css'
+import { fontsClassName } from '~/styles/fonts'
+import { StyleVariables } from '~/styles/scripts/style-variables'
 // import CursorFollower from './(pages)/(components)/cursor'
 
-const APP_NAME = AppData.name;
-const APP_DEFAULT_TITLE = 'Satūs';
-const APP_TITLE_TEMPLATE = '%s - Satūs';
-const APP_DESCRIPTION = AppData.description;
-const APP_BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
+const APP_NAME = AppData.name
+const APP_DEFAULT_TITLE = 'Satūs'
+const APP_TITLE_TEMPLATE = '%s - Satūs'
+const APP_DESCRIPTION = AppData.description
+const APP_BASE_URL = process.env.NEXT_PUBLIC_BASE_URL
 
-const GTM_ID = process.env.NEXT_PUBLIC_GOOGLE_TAG_MANAGER_ID || false;
-const GA_ID = process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS || false;
+const GTM_ID = process.env.NEXT_PUBLIC_GOOGLE_TAG_MANAGER_ID || false
+const GA_ID = process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS || false
 
 export const metadata = {
   applicationName: APP_NAME,
@@ -56,18 +56,18 @@ export const metadata = {
   authors: [
     { name: 'darkroom.engineering', url: 'https://darkroom.engineering' },
   ],
-};
+}
 
 export const viewport = {
   themeColor: '#e30613',
-};
+}
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   // console.log(themes, 'fc/')
   return (
     <html
-      lang='en'
-      dir='ltr'
+      lang="en"
+      dir="ltr"
       className={fontsClassName}
       suppressHydrationWarning
     >
@@ -75,7 +75,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         <StyleVariables colors={colors} themes={themes} />
       </head>
       {GTM_ID && <GoogleTagManager gtmId={GTM_ID} />}
-      <body className='bg-[#222222]'>
+      <body className="bg-[#222222]">
         <RealViewport />
         {/* <ClickSpark> */}
         {children}
@@ -89,5 +89,5 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       </body>
       {GA_ID && <GoogleAnalytics gaId={GA_ID} />}
     </html>
-  );
+  )
 }

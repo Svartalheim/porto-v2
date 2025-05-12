@@ -1,10 +1,10 @@
-import { Navigation } from '../(components)/navigation';
+import { Navigation } from '../(components)/navigation'
 
 export default function TestPage() {
   return (
     <>
       <Navigation />
-      <div className='h-[300vh] bg-blue-800'>s SVARIATLEk</div>
+      <div className="h-[300vh] bg-blue-800">s SVARIATLEk</div>
     </>
 
     // <Wrapper
@@ -15,5 +15,5 @@ export default function TestPage() {
     //   {/* content  */}
     //   asdasdas
     /* </Wrapper> */
-  );
+  )
 }

@@ -1,18 +1,26 @@
 /* INDEX CSS FILE - Barrel file for importing all the css files */
-@import "tailwindcss/utilities.css";
-@import "./reset.css";
-@import "./tailwind.css";
-@import "./root.css";
-@import "./global.css";
+@import 'tailwindcss/utilities.css';
+@import './reset.css';
+@import './tailwind.css';
+@import './root.css';
+@import './global.css';
 /* Add this to your global CSS file */
 /* Add this to your global CSS file */
+/* Add this to your global CSS file */
+
+/* Transition duration control - modify this value to adjust all transitions */
+:root {
+  --transition-duration: 500ms;
+  --transition-delay: 0ms;
+  --transition-timing: cubic-bezier(0.33, 1, 0.68, 1); /* easeOutCubic */
+}
 
 /* Base setup for view transitions */
 html {
   overflow-x: hidden; /* Prevent horizontal scrolling during transitions */
 }
 
-/* Only apply transitions when the class is present */
+/* Only apply transitions when the class is present AND API is supported */
 .view-transition-enabled {
   view-transition-name: none;
 }
@@ -29,18 +37,23 @@ html {
   overflow: hidden;
 }
 
-/* Control the animations */
+/* Control the animations with strict timing */
 ::view-transition-old(page) {
-  animation: slide-out-down 2s ease forwards;
+  animation: slide-out-down var(--transition-duration) var(--transition-timing)
+    var(--transition-delay) both;
+  z-index: -100;
+  transform-origin: top left;
 }
 
 ::view-transition-new(page) {
-  animation: slide-in-bottom 2s ease forwards;
+  animation: slide-in-bottom var(--transition-duration) var(--transition-timing)
+    var(--transition-delay) both;
+  z-index: 100;
 }
 
 @keyframes slide-in-bottom {
   from {
-    transform: translateY(100%);
+    transform: translateY(75%);
     opacity: 1;
   }
   to {
@@ -51,21 +64,20 @@ html {
 
 @keyframes slide-out-down {
   from {
-    transform: scale(1);
+    transform: scale(1) rotate(0deg);
     opacity: 1;
   }
   to {
-    transform: scale(0.9);
-    opacity: 0;
+    transform: translate(1%, 1%) rotate(1deg) scale(0.95);
+    opacity: 0.3;
   }
 }
 
-/* Ensure the root transition groups work properly */
-html::view-transition-group(root),
-body::view-transition-group(root) {
-  animation: none;
-  mix-blend-mode: normal;
-  display: block;
+/* Force stacking contexts for transition elements */
+::view-transition-group(root),
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: var(--transition-duration);
 }
 
 /* Ensure content inside the transition is visible */
@@ -76,4 +88,11 @@ body::view-transition-group(root) {
 ::view-transition-old(page),
 ::view-transition-new(page) {
   mix-blend-mode: normal;
+}
+
+/* Force hardware acceleration for smoother transitions */
+.view-transition-enabled .page-container {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  will-change: transform;
 }

@@ -1,31 +1,31 @@
-'use client';
+'use client'
 
-import { useGSAP } from '@gsap/react';
+import { useGSAP } from '@gsap/react'
 // import { IconChevronDown } from '@tabler/icons-react';
-import gsap from 'gsap';
-import { ScrollSmoother } from 'gsap/ScrollSmoother';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { useEffect, useRef } from 'react';
-import ScrambleFadeTextGroup from './(components)/scramble-fade-text-simple';
+import gsap from 'gsap'
+import { ScrollSmoother } from 'gsap/ScrollSmoother'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { useEffect, useRef } from 'react'
+import ScrambleFadeTextGroup from './(components)/scramble-fade-text-simple'
 
-gsap.registerPlugin(ScrollSmoother, ScrollTrigger);
+gsap.registerPlugin(ScrollSmoother, ScrollTrigger)
 
 export default function GsapButton() {
-  const wrapperRef = useRef();
-  const contentRef = useRef();
-  const buttonRef = useRef();
-  const titleRef = useRef();
+  const wrapperRef = useRef()
+  const contentRef = useRef()
+  const buttonRef = useRef()
+  const titleRef = useRef()
 
   useGSAP(() => {
-    const title = titleRef.current;
-    const viewportHeight = window.innerHeight;
+    const title = titleRef.current
+    const viewportHeight = window.innerHeight
 
     ScrollSmoother.create({
       wrapper: wrapperRef.current,
       content: contentRef.current,
       smooth: 1.25,
       effects: true,
-    });
+    })
 
     // gsap.fromTo(
     //   title,
@@ -42,14 +42,14 @@ export default function GsapButton() {
     //     },
     //   }
     // );
-  }, []);
+  }, [])
 
   useEffect(() => {
-    document.documentElement.setAttribute('data-theme', 'dark');
-  }, []);
+    document.documentElement.setAttribute('data-theme', 'dark')
+  }, [])
 
   return (
-    <div ref={wrapperRef} className='overflow-hidden'>
+    <div ref={wrapperRef} className="overflow-hidden">
       {/* <Navigation /> */}
       <div ref={contentRef}>
         {/* <div className='good  '>
@@ -87,26 +87,26 @@ export default function GsapButton() {
           </div>
         </div> */}
         {/* <div className='h-screen bg-white'> */}
-        <div className='w-screen min-h-screen flex spy-80 justify-center items-center'>
-          <div className='flex flex-col w-full h-full font-semibold sleading-70 my-auto sgap-100 items-center spx-100'>
-            <h1 className='text-4xl font-bold mb-10'>
+        <div className="w-screen min-h-screen flex spy-80 justify-center items-center">
+          <div className="flex flex-col w-full h-full font-semibold sleading-70 my-auto sgap-100 items-center spx-100">
+            <h1 className="text-4xl font-bold mb-10">
               Text Animation Showcase
             </h1>
-            <p className='text-xl mb-16 max-w-2xl text-center'>
+            <p className="text-xl mb-16 max-w-2xl text-center">
               Demonstrating advanced text animations with GSAP. Features include
               scrambling effects, staggered reveals, hover effects, and
               scroll-triggered animations.
             </p>
             <ScrambleFadeTextGroup
-              className='stext-60 min-w-[700px] -smt-40 '
+              className="stext-60 min-w-[700px] -smt-40 "
               text={'a\nb'}
               duration={10}
               charsPerGroup={1}
               repeatDelay={2}
               scrambleSpeed={0.4}
               fadeDistance={50}
-              ease='power3.out'
-              direction='left'
+              ease="power3.out"
+              direction="left"
               multiline={true}
             />
 
@@ -149,12 +149,12 @@ export default function GsapButton() {
               scrollTriggered={true}
             /> */}
 
-            <div className='text-center mt-36 mb-20 w-full max-w-2xl'>
-              <p className='text-lg mb-6'>
+            <div className="text-center mt-36 mb-20 w-full max-w-2xl">
+              <p className="text-lg mb-6">
                 Scroll down to see more animation effects, including
                 scroll-triggered animations that activate as you view them.
               </p>
-              <p className='text-sm opacity-70'>
+              <p className="text-sm opacity-70">
                 All animations utilize GSAP with SplitText and
                 ScrambleTextPlugin for optimal performance.
               </p>
@@ -182,5 +182,5 @@ export default function GsapButton() {
         {/* <VideoScrollReveal /> */}
       </div>
     </div>
-  );
+  )
 }

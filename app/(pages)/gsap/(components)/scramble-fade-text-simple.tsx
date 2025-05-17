@@ -1,4 +1,4 @@
-'use client'
+'use client';
 
 /**
  * ScrambleFadeText Component
@@ -17,15 +17,15 @@
  * dynamic text reveal animations that can be configured in many ways.
  */
 
-import { useGSAP } from '@gsap/react'
-import gsap from 'gsap'
-import { ScrambleTextPlugin } from 'gsap/ScrambleTextPlugin'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import { SplitText } from 'gsap/SplitText'
-import { useCallback, useEffect, useRef, useState } from 'react'
+import { useGSAP } from '@gsap/react';
+import gsap from 'gsap';
+import { ScrambleTextPlugin } from 'gsap/ScrambleTextPlugin';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { SplitText } from 'gsap/SplitText';
+import { useCallback, useEffect, useRef, useState } from 'react';
 
 // Register the plugins
-gsap.registerPlugin(ScrambleTextPlugin, SplitText, ScrollTrigger)
+gsap.registerPlugin(ScrambleTextPlugin, SplitText, ScrollTrigger);
 
 /**
  * Props for the ScrambleFadeTextGroup component
@@ -79,81 +79,86 @@ export default function ScrambleFadeTextGroup({
   debounceResize = 150,
   onAnimationComplete = () => {},
 }) {
-  const containerRef = useRef<HTMLDivElement>(null)
-  const splitTextRef = useRef<SplitText | null>(null)
+  const containerRef = useRef<HTMLDivElement>(null);
+  const splitTextRef = useRef<SplitText | null>(null);
 
   // References for animations
-  const hoverTimelineRef = useRef<gsap.core.Timeline | null>(null)
-  const mainTimelineRef = useRef<gsap.core.Timeline | null>(null)
-  const resizeTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null)
-  const [, forceUpdate] = useState({})
+  const hoverTimelineRef = useRef<gsap.core.Timeline | null>(null);
+  const mainTimelineRef = useRef<gsap.core.Timeline | null>(null);
+  const resizeTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const [, forceUpdate] = useState({});
 
   // Debounced resize handler
   const handleResize = useCallback(() => {
-    if (debounceResize <= 0) return
+    if (debounceResize <= 0) return;
 
     if (resizeTimeoutRef.current) {
-      clearTimeout(resizeTimeoutRef.current)
+      clearTimeout(resizeTimeoutRef.current);
     }
 
     resizeTimeoutRef.current = setTimeout(() => {
       // Force re-render to rebuild animation
-      forceUpdate({})
-    }, debounceResize)
-  }, [debounceResize])
+      forceUpdate({});
+    }, debounceResize);
+  }, [debounceResize]);
 
   // Cleanup on unmount
   useEffect(() => {
     return () => {
-      splitTextRef.current?.revert()
-      hoverTimelineRef.current?.kill()
-      mainTimelineRef.current?.kill()
+      splitTextRef.current?.revert();
+      hoverTimelineRef.current?.kill();
+      mainTimelineRef.current?.kill();
 
       if (resizeTimeoutRef.current) {
-        clearTimeout(resizeTimeoutRef.current)
+        clearTimeout(resizeTimeoutRef.current);
       }
-    }
-  }, [])
+    };
+  }, []);
 
   // Handle window resize
   useEffect(() => {
-    if (debounceResize <= 0) return
+    if (debounceResize <= 0) return;
 
-    window.addEventListener('resize', handleResize)
+    window.addEventListener('resize', handleResize);
 
     return () => {
-      window.removeEventListener('resize', handleResize)
-    }
-  }, [debounceResize, handleResize])
+      window.removeEventListener('resize', handleResize);
+    };
+  }, [debounceResize, handleResize]);
 
   useGSAP(() => {
-    if (!containerRef.current) return
+    if (!containerRef.current) return;
 
     // Revert old split text
-    splitTextRef.current?.revert()
+    splitTextRef.current?.revert();
 
     // split elements with the class "split" into words and characters
     // If multiline, we need to handle each line separately
-    const selector = multiline ? '.split-text-line' : '.split-text'
-    const split = SplitText.create(selector, { type: 'words, chars' })
+    const selector = multiline ? '.split-text-line' : '.split-text';
+    const split = SplitText.create(selector, {
+      type: 'words, chars',
+      wordsClass: 'word-wrap !block',
+      charsClass: 'char-wrap',
+    });
 
-    // Group characters for cascade effect
-    const chars = split.chars
-
+    // Group characters and words for cascade effect
+    const chars = split.chars;
+    const words = split.words;
+    const lines = split.lines;
     // Set direction properties
     const directionProps = {
       x: 0,
       y: 0,
-    }
+    };
 
     if (direction === 'bottom') {
-      directionProps.y = fadeDistance
+      directionProps.y = fadeDistance;
     } else if (direction === 'top') {
-      directionProps.y = -fadeDistance
+      directionProps.y = -fadeDistance;
     } else if (direction === 'left') {
-      directionProps.x = -fadeDistance
+      directionProps.x = -fadeDistance;
     } else if (direction === 'right') {
-      directionProps.x = fadeDistance
+      directionProps.x = fadeDistance;
     }
 
     // Create timeline options
@@ -164,10 +169,10 @@ export default function ScrambleFadeTextGroup({
       onRepeat: () => {
         // Only reset if not using yoyo/reverse
         if (!reverseOnRepeat) {
-          gsap.set(chars, { clearProps: 'all' })
+          gsap.set([chars, words], { clearProps: 'all' });
         }
       },
-    }
+    };
 
     // Add scroll trigger if enabled
     if (scrollTriggered) {
@@ -176,43 +181,43 @@ export default function ScrambleFadeTextGroup({
         start: 'top bottom-=100',
         end: 'bottom top+=100',
         toggleActions: 'play none none reverse',
-      }
+      };
     }
 
     // Create a timeline for better control
     const tl = gsap.timeline({
       ...timelineOptions,
       onComplete: onAnimationComplete,
-    })
+    });
 
     // Store timeline for cleanup and external control
-    mainTimelineRef.current = tl
+    mainTimelineRef.current = tl;
 
-    tl.from(
-      containerRef.current,
-      {
-        x: directionProps.x * 0.5,
-        y: directionProps.y * 0.5,
-        opacity: 0,
-        duration: duration * 0.4, // Slightly faster than the text animation
-        ease: ease,
-      },
-      '<'
-    )
+    // tl.from(
+    //   containerRef.current,
+    //   {
+    //     x: directionProps.x * 0.5,
+    //     y: directionProps.y * 0.5,
+    //     opacity: 0,
+    //     duration: duration * 0.4, // Slightly faster than the text animation
+    //     ease: ease,
+    //   },
+    //   '<'
+    // );
 
-    const staggerAmount = 0.03 * charsPerGroup
+    const staggerAmount = 0.03 * charsPerGroup;
 
     // Set up stagger value based on direction
     const staggerFrom =
       staggerDirection === 'reverse'
         ? 'end'
         : staggerDirection === 'center'
-          ? 'center'
-          : staggerDirection === 'edges'
-            ? 'edges'
-            : staggerDirection === 'random'
-              ? 'random'
-              : 'start'
+        ? 'center'
+        : staggerDirection === 'edges'
+        ? 'edges'
+        : staggerDirection === 'random'
+        ? 'random'
+        : 'start';
 
     // For TypeScript compatibility with GSAP's stagger types
     const staggerConfig = {
@@ -225,51 +230,62 @@ export default function ScrambleFadeTextGroup({
         | 'random'
         | number
         | [number, number],
-    }
+    };
 
-    // First add the fade-in animation
-    tl.from(
-      chars,
-      {
-        duration: duration * 0.6,
-        x: directionProps.x,
-        y: directionProps.y,
-        opacity: 0,
-        stagger: staggerConfig, // Apply complex stagger configuration
-        ease: ease,
-      },
-      '<'
-    )
+    // // First add word-by-word fade-in animation for domino effect
+    // tl.from(
+    //   words,
+    //   {
+    //     duration: duration * 0.1,
+    //     opacity: 0,
+    //     stagger: staggerAmount * 2,
+    //     ease: ease,
+    //   },
+    //   '<'
+    // );
 
-    // Then add the scramble effect with a slight overlap
+    // // Then add character-level fade animation with slight overlap
+    // tl.from(
+    //   chars,
+    //   {
+    //     duration: duration * 0.2, // faster than scramble
+    //     x: directionProps.x,
+    //     y: directionProps.y,
+    //     opacity: 0,
+    //     stagger: staggerConfig,
+    //     ease: 'power1.inOut',
+    //   },
+    //   '<0.05' // starts slightly after word fade
+    // );
+
+    // Finally add the scramble effect with a slight overlap
     tl.to(
-      chars,
+      '.split-text',
       {
-        duration: duration,
+        duration: duration * 0.1,
         scrambleText: {
           text: '{original}',
           chars: scrambleChars,
           speed: scrambleSpeed,
-          revealDelay: duration * 0.25,
+          revealDelay: 2,
         },
-        stagger: staggerConfig, // Match the stagger from fade-in
+        stagger: staggerConfig,
       },
-      '<0.1' // Overlap with fade-in
-    )
-
-    // Add color transition if enabled
-    if (colorTransition) {
-      tl.to(
-        chars,
-        {
-          color: endColor,
-          duration: duration * 1.2,
-          stagger: staggerConfig,
-          ease: 'power1.inOut',
-        },
-        '<0.2'
-      )
-    }
+      '<0.1'
+    );
+    // // Add color transition if enabled
+    // if (colorTransition) {
+    //   tl.to(
+    //     chars,
+    //     {
+    //       color: endColor,
+    //       duration: duration * 1.2,
+    //       stagger: staggerConfig,
+    //       ease: 'power1.inOut',
+    //     },
+    //     '<0.2'
+    //   );
+    // }
   }, [
     text,
     duration,
@@ -289,48 +305,48 @@ export default function ScrambleFadeTextGroup({
     endColor,
     scrollTriggered,
     onAnimationComplete,
-  ])
+  ]);
 
   // Process text for multiline display if needed
   const processedText = multiline
     ? text.split('\n').map((line, i) => (
         <div
           key={`line-${i}-${line.substring(0, 5)}`}
-          className="split-text-line block whitespace-nowrap"
+          className='split-text-line inline-block'
         >
           {line}
         </div>
       ))
-    : text
+    : text;
 
   // Setup hover effects
   useEffect(() => {
-    if (!hoverEffect || !containerRef.current) return
+    if (!hoverEffect || !containerRef.current) return;
 
     // Create a timeline for hover effect
-    const hoverTl = gsap.timeline({ paused: true })
+    const hoverTl = gsap.timeline({ paused: true });
     hoverTl.to(containerRef.current, {
       scale: hoverScale,
       duration: 0.3,
       ease: 'power2.out',
-    })
+    });
 
     // Store timeline for cleanup
-    hoverTimelineRef.current = hoverTl
+    hoverTimelineRef.current = hoverTl;
 
     // Add event listeners
-    const element = containerRef.current
-    const onMouseEnter = () => hoverTl.play()
-    const onMouseLeave = () => hoverTl.reverse()
+    const element = containerRef.current;
+    const onMouseEnter = () => hoverTl.play();
+    const onMouseLeave = () => hoverTl.reverse();
 
-    element.addEventListener('mouseenter', onMouseEnter)
-    element.addEventListener('mouseleave', onMouseLeave)
+    element.addEventListener('mouseenter', onMouseEnter);
+    element.addEventListener('mouseleave', onMouseLeave);
 
     return () => {
-      element.removeEventListener('mouseenter', onMouseEnter)
-      element.removeEventListener('mouseleave', onMouseLeave)
-    }
-  }, [hoverEffect, hoverScale])
+      element.removeEventListener('mouseenter', onMouseEnter);
+      element.removeEventListener('mouseleave', onMouseLeave);
+    };
+  }, [hoverEffect, hoverScale]);
 
   return (
     <div
@@ -339,11 +355,11 @@ export default function ScrambleFadeTextGroup({
     >
       <div
         ref={containerRef}
-        className="split-text"
+        className='split-text'
         style={colorTransition ? { color: startColor } : undefined}
       >
         {processedText}
       </div>
     </div>
-  )
+  );
 }
